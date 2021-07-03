@@ -7,8 +7,12 @@ module.exports = class Mongo {
   static client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, });
   async connect() {
     if (!Mongo.client.isConnected()) {
-      await Mongo.client.connect();
-      console.log(`Connecting mongo ${Mongo.client.isConnected()}`)
+      try {
+        await Mongo.client.connect();
+        console.log(`Connecting mongo ${Mongo.client.isConnected()}`)
+      } catch (err) {
+        console.log("Failed to connect to Mongo");
+      }
     }
   }
   async getDb(name = "sandbox") {

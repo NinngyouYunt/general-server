@@ -3,8 +3,8 @@ require("dotenv").config();
 const config = {
   port: process.env.PORT,
   mongo: {
-    username: process.env.mongoUsername,
-    password: process.env.mongoPassword
+    username: process.env.MONGO_USERNAME,
+    password: process.env.MONGO_PASSWORD
   },
   socketCors: {
     origin: "*"
