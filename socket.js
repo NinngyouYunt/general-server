@@ -26,7 +26,7 @@ module.exports = (io) => {
       }
       todoStore.insert(obj).then(() => {
         todoStore.findAll().then(data => {
-          client.emit("push-todo-change", data);
+          io.emit("push-todo-change", data);
         });
       });
     });
@@ -34,7 +34,7 @@ module.exports = (io) => {
     client.on("remove-todo", todo => {
       todoStore.remove({ _id: todo._id }).then(() => {
         todoStore.findAll().then(data => {
-          client.emit("push-todo-change", data);
+          io.emit("push-todo-change", data);
         });
       });
     });
